@@ -371,6 +371,36 @@
       .doc-dialog-inner { padding: 32px 22px 28px; }
       .doc-head h3 { font-size: 24px; }
     }
+
+    /* Phone header: clean two-row layout */
+    @media (max-width: 768px) {
+      .nav-wrap { height: auto; flex-wrap: wrap; padding: 12px 0; gap: 12px; }
+      .brand { flex: 1 1 100%; min-width: 0; }
+      .brand > div:last-child { min-width: 0; }
+      .logo-img { height: 42px; }
+      .brand-name { font-size: 17px; white-space: nowrap; }
+      .brand-sub { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .header-cta { width: 100%; justify-content: space-between; gap: 10px; }
+      .header-cta .btn-primary { order: 1; flex: 1; padding: 11px 16px; font-size: 14px; white-space: nowrap; }
+      .social-header { order: 2; }
+      .social-header svg { width: 36px; height: 36px; }
+      .menu-toggle { order: 3; display: block; padding: 4px 8px; line-height: 1; }
+      nav.open { top: 100%; }
+    }
+
+    /* Know more panel, opens inside the doctor card */
+    .know-more-btn[aria-expanded="true"] svg { transform: rotate(90deg); }
+    .doc-panel {
+      position: relative; margin-top: 22px; text-align: left;
+      background: var(--bg); border: 1px solid var(--line); border-radius: 16px;
+      animation: docPanelIn .25s ease;
+    }
+    .doc-panel[hidden] { display: none; }
+    .doc-panel .doc-dialog-inner { padding: 40px 26px 28px; }
+    .doc-panel .dialog-close { top: 10px; right: 10px; width: 34px; height: 34px; font-size: 22px; }
+    .doc-panel .doc-head h3 { font-size: 24px; }
+    .doc-panel .doc-body h4 { margin-top: 18px; }
+    @keyframes docPanelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
   </style>
 </head>
 <body>
@@ -602,8 +632,35 @@
               <span class="tag">Aligner Specialist</span>
             </div>
             <div class="know-more-wrap">
-              <button class="know-more-btn" type="button" data-dialog="dlg-bhavana">Know more about your specialist <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+              <button class="know-more-btn" type="button" aria-expanded="false" data-dialog="dlg-bhavana">Know more about your specialist <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
             </div>
+            <div class="doc-panel" id="dlg-bhavana" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="doc-dialog-inner">
+      <div class="doc-head">
+        <img src="dr bhavana.jpg" alt="Dr. Bhavana B">
+        <h3 id="dlg-bhavana-name">Dr. Bhavana B</h3>
+        <p class="designation">MDS - Orthodontics and Dentofacial Orthopaedics</p>
+      </div>
+      <div class="doc-body">
+        <p>Dr. Bhavana B is a specialist in Orthodontics and Dentofacial Orthopaedics, with a clinical focus on comprehensive orthodontic treatment, dentofacial growth modification, clear aligner therapy, and surgical orthodontics.</p>
+        <p>With a Master of Dental Surgery (MDS) in Orthodontics and Dentofacial Orthopaedics, she is dedicated to diagnosing and managing dental and skeletal malocclusions, creating well-aligned smiles while ensuring optimal facial balance, function, and aesthetics.</p>
+        <p>Her clinical expertise encompasses fixed orthodontic treatment, clear aligner therapy, growth modification in developing patients, and orthodontic management of complex dentofacial deformities, including cases requiring orthognathic surgery. She believes in an individualized approach to orthodontic care, with treatment plans tailored to each patient's facial profile, dental alignment, skeletal relationships, and functional requirements.</p>
+        <p>With an emphasis on evidence-based treatment planning, precision, and aesthetics, Dr. Bhavana strives to deliver personalized orthodontic care that goes beyond straightening teeth&mdash;helping patients achieve harmonious facial proportions, improved function, and confident, beautiful smiles.</p>
+        <h4>Areas of Expertise</h4>
+        <ul>
+            <li>Comprehensive Fixed Orthodontic Treatment</li>
+            <li>Clear Aligner Therapy</li>
+            <li>Dentofacial Orthopaedics &amp; Jaw Growth Modification</li>
+            <li>Surgical Orthodontics &amp; Orthognathic Surgery</li>
+            <li>Management of Skeletal Malocclusions</li>
+            <li>Interceptive and Preventive Orthodontics</li>
+            <li>Smile Designing and Aesthetic Orthodontics</li>
+            <li>Correction of Complex Dental and Skeletal Malocclusions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
           </div>
           <div class="doctor-card">
             <div class="doctor-photo"><img src="dr-praveen.png" alt="Dr. Praveen R" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;"></div>
@@ -613,8 +670,34 @@
               <span class="tag">Implantologist</span>
             </div>
             <div class="know-more-wrap">
-              <button class="know-more-btn" type="button" data-dialog="dlg-praveen">Know more about your specialist <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+              <button class="know-more-btn" type="button" aria-expanded="false" data-dialog="dlg-praveen">Know more about your specialist <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
             </div>
+            <div class="doc-panel" id="dlg-praveen" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="doc-dialog-inner">
+      <div class="doc-head">
+        <img src="dr-praveen.png" alt="Dr. Praveen R">
+        <h3 id="dlg-praveen-name">Dr. Praveen R</h3>
+        <p class="designation">MDS - Maxillofacial Prosthodontics and Implantology</p>
+      </div>
+      <div class="doc-body">
+        <p>Dr. Praveen is a specialist in Prosthodontics and Implantology, with a clinical focus on dental implants, full mouth rehabilitation, smile restoration, and advanced prosthetic dentistry.</p>
+        <p>He has undergone international implantology training at the Division of Oral Reconstruction and Prosthodontics, Kyushu Dental University, Japan, gaining exposure to advanced concepts in prosthetic rehabilitation and oral implantology.</p>
+        <p>His professional training also includes specialized courses in nasal, pterygoid, and zygomatic implantology&mdash;advanced implant techniques designed to address complex cases involving compromised bone availability.</p>
+        <p>With an emphasis on meticulous treatment planning, precision, function, and aesthetics, Dr. Praveen strives to deliver personalized dental care and long-lasting rehabilitative solutions, helping patients restore comfort, confidence, and natural-looking smiles.</p>
+        <h4>Areas of Expertise</h4>
+        <ul>
+            <li>Dental Implant Rehabilitation</li>
+            <li>Full Mouth Rehabilitation (FMR)</li>
+            <li>Advanced Implantology</li>
+            <li>Zygomatic, Pterygoid &amp; Nasal Implant Training</li>
+            <li>Smile Designing</li>
+            <li>Crowns, Bridges &amp; Prosthetic Rehabilitation</li>
+            <li>Complete Dentures &amp; Full Arch Rehabilitation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
           </div>
         </div>
       </div>
@@ -828,62 +911,6 @@
     </section>
   </main>
 
-  <!-- Doctor profile dialogs -->
-  <dialog class="doc-dialog" id="dlg-bhavana" aria-labelledby="dlg-bhavana-name">
-    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
-    <div class="doc-dialog-inner">
-      <div class="doc-head">
-        <img src="dr bhavana.jpg" alt="Dr. Bhavana B">
-        <h3 id="dlg-bhavana-name">Dr. Bhavana B</h3>
-        <p class="designation">MDS - Orthodontics and Dentofacial Orthopaedics</p>
-      </div>
-      <div class="doc-body">
-        <p>Dr. Bhavana B is a specialist in Orthodontics and Dentofacial Orthopaedics, with a clinical focus on comprehensive orthodontic treatment, dentofacial growth modification, clear aligner therapy, and surgical orthodontics.</p>
-        <p>With a Master of Dental Surgery (MDS) in Orthodontics and Dentofacial Orthopaedics, she is dedicated to diagnosing and managing dental and skeletal malocclusions, creating well-aligned smiles while ensuring optimal facial balance, function, and aesthetics.</p>
-        <p>Her clinical expertise encompasses fixed orthodontic treatment, clear aligner therapy, growth modification in developing patients, and orthodontic management of complex dentofacial deformities, including cases requiring orthognathic surgery. She believes in an individualized approach to orthodontic care, with treatment plans tailored to each patient's facial profile, dental alignment, skeletal relationships, and functional requirements.</p>
-        <p>With an emphasis on evidence-based treatment planning, precision, and aesthetics, Dr. Bhavana strives to deliver personalized orthodontic care that goes beyond straightening teeth&mdash;helping patients achieve harmonious facial proportions, improved function, and confident, beautiful smiles.</p>
-        <h4>Areas of Expertise</h4>
-        <ul>
-            <li>Comprehensive Fixed Orthodontic Treatment</li>
-            <li>Clear Aligner Therapy</li>
-            <li>Dentofacial Orthopaedics &amp; Jaw Growth Modification</li>
-            <li>Surgical Orthodontics &amp; Orthognathic Surgery</li>
-            <li>Management of Skeletal Malocclusions</li>
-            <li>Interceptive and Preventive Orthodontics</li>
-            <li>Smile Designing and Aesthetic Orthodontics</li>
-            <li>Correction of Complex Dental and Skeletal Malocclusions</li>
-        </ul>
-      </div>
-    </div>
-  </dialog>
-
-  <dialog class="doc-dialog" id="dlg-praveen" aria-labelledby="dlg-praveen-name">
-    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
-    <div class="doc-dialog-inner">
-      <div class="doc-head">
-        <img src="dr-praveen.png" alt="Dr. Praveen R">
-        <h3 id="dlg-praveen-name">Dr. Praveen R</h3>
-        <p class="designation">MDS - Maxillofacial Prosthodontics and Implantology</p>
-      </div>
-      <div class="doc-body">
-        <p>Dr. Praveen is a specialist in Prosthodontics and Implantology, with a clinical focus on dental implants, full mouth rehabilitation, smile restoration, and advanced prosthetic dentistry.</p>
-        <p>He has undergone international implantology training at the Division of Oral Reconstruction and Prosthodontics, Kyushu Dental University, Japan, gaining exposure to advanced concepts in prosthetic rehabilitation and oral implantology.</p>
-        <p>His professional training also includes specialized courses in nasal, pterygoid, and zygomatic implantology&mdash;advanced implant techniques designed to address complex cases involving compromised bone availability.</p>
-        <p>With an emphasis on meticulous treatment planning, precision, function, and aesthetics, Dr. Praveen strives to deliver personalized dental care and long-lasting rehabilitative solutions, helping patients restore comfort, confidence, and natural-looking smiles.</p>
-        <h4>Areas of Expertise</h4>
-        <ul>
-            <li>Dental Implant Rehabilitation</li>
-            <li>Full Mouth Rehabilitation (FMR)</li>
-            <li>Advanced Implantology</li>
-            <li>Zygomatic, Pterygoid &amp; Nasal Implant Training</li>
-            <li>Smile Designing</li>
-            <li>Crowns, Bridges &amp; Prosthetic Rehabilitation</li>
-            <li>Complete Dentures &amp; Full Arch Rehabilitation</li>
-        </ul>
-      </div>
-    </div>
-  </dialog>
-
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -965,15 +992,18 @@
   <a class="whatsapp-float" href="https://wa.me/918610767124" aria-label="Chat on WhatsApp"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path fill="#FFFFFF" d="M16.04 3C8.84 3 3 8.8 3 15.95c0 2.3.63 4.54 1.82 6.5L3 29l6.75-1.77a13.1 13.1 0 0 0 6.29 1.6h.01C23.23 28.83 29 23.03 29 15.9 29 8.75 23.24 3 16.04 3zm0 23.8h-.01a10.9 10.9 0 0 1-5.55-1.52l-.4-.24-4 1.05 1.07-3.9-.26-.4a10.8 10.8 0 0 1-1.67-5.84c0-6.03 4.93-10.93 10.99-10.93 2.93 0 5.69 1.14 7.76 3.21a10.84 10.84 0 0 1 3.21 7.73c0 6.03-4.94 10.9-10.94 10.9z"/><path fill="#FFFFFF" d="M22.27 19.07c-.33-.17-1.96-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-.33-.17-1.39-.51-2.65-1.63-.98-.87-1.64-1.95-1.83-2.28-.19-.33-.02-.5.14-.67.15-.15.33-.38.5-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.17-.74-1.78-1.01-2.44-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.58.08-.88.41-.3.33-1.16 1.13-1.16 2.76s1.19 3.2 1.35 3.42c.17.22 2.34 3.57 5.67 5.01.79.34 1.41.55 1.89.7.8.25 1.52.22 2.09.13.64-.1 1.96-.8 2.24-1.57.27-.77.27-1.44.19-1.57-.08-.14-.3-.22-.63-.38z"/></svg></a>
 
   <script>
-    // Doctor profile dialogs
+    // Know more: open the profile panel right under its button
     document.querySelectorAll("[data-dialog]").forEach(function (btn) {
+      const panel = document.getElementById(btn.dataset.dialog);
       btn.addEventListener("click", function () {
-        document.getElementById(btn.dataset.dialog).showModal();
+        const open = panel.hasAttribute("hidden");
+        panel.toggleAttribute("hidden", !open);
+        btn.setAttribute("aria-expanded", String(open));
       });
-    });
-    document.querySelectorAll(".doc-dialog").forEach(function (dlg) {
-      dlg.querySelector(".dialog-close").addEventListener("click", function () { dlg.close(); });
-      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+      panel.querySelector(".dialog-close").addEventListener("click", function () {
+        panel.setAttribute("hidden", "");
+        btn.setAttribute("aria-expanded", "false");
+      });
     });
   </script>
 
