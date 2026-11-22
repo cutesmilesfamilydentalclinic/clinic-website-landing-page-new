@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cute Smiles Family Dental Clinic and Implant Centre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Brand palette */
+      --primary: #17494A;        /* teal: main buttons, logo, key accents */
+      --primary-dark: #0F3334;   /* hover state */
+      --secondary: #A9C5B5;      /* sage: soft tints, dots, highlights */
+      --secondary-dark: #4E6B5E; /* sage for icons and small accents */
+      --tertiary: #C5A77D;       /* tan: stars, eyebrow labels */
+      --tertiary-dark: #7A5C32;  /* readable tan for text */
+      --neutral: #252B2B;        /* charcoal: text, footer */
+
+      /* Supporting tones */
+      --ink: var(--neutral);
+      --muted: #5A6464;
+      --line: #D5DEDB;
+      --white: #FFFFFF;
+      --bg: #EEF2F1;
+      --sage-light: #E3EDE7;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(37, 43, 43, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.2; font-weight: 600; }
+    h1 { font-size: 48px; }
+    h2 { font-size: 36px; }
+    h3 { font-size: 20px; }
+    p { color: var(--muted); }
+
+    .container { width: 100%; max-width: 1184px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--tertiary-dark);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .section-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
+    .section-head p { margin-top: 12px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 26px; border-radius: 999px; font-weight: 600; font-size: 15px;
+      border: 2px solid transparent; cursor: pointer; transition: all .2s ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--white); box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-outline:hover { background: var(--ink); color: var(--white); }
+
+    .placeholder-img {
+      background: linear-gradient(135deg, var(--sage-light), #d7e3d5);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 14px; text-align: center; padding: 16px;
+      border-radius: var(--radius);
+    }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 41px; height: 41px; border-radius: 50%;
+      background: var(--primary); color: var(--white);
+      display: flex; align-items: center; justify-content: center; font-weight: 700;
+    }
+    .logo-img { height: 48px; width: auto; display: block; }
+    footer .logo-img { background: #fff; border-radius: 10px; padding: 4px 8px; height: 56px; }
+    .brand-name { font-weight: 700; font-size: 18px; line-height: 1.1; }
+    .brand-sub { font-size: 12px; color: var(--muted); }
+    nav ul { display: flex; list-style: none; gap: 28px; }
+    nav a { font-size: 15px; font-weight: 500; color: var(--ink); }
+    nav a:hover { color: var(--tertiary-dark); }
+    .header-cta { display: flex; gap: 12px; align-items: center; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 26px; cursor: pointer; }
+
+    /* Hero */
+    .hero { padding: 72px 0 80px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+    .hero-text h1 span { color: var(--tertiary-dark); }
+    .hero-text p { font-size: 17px; margin: 20px 0 32px; max-width: 560px; }
+    .ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .trust-list { display: grid; gap: 12px; margin-top: 32px; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--secondary); flex-shrink: 0; }
+    .hero-visual { position: relative; }
+    .hero-visual .placeholder-img { height: 420px; }
+    .trust-badge {
+      position: absolute; left: 24px; bottom: -24px; right: 24px;
+      background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 18px 22px; display: flex; gap: 14px; align-items: center;
+    }
+    .trust-badge strong { display: block; font-size: 16px; }
+    .trust-badge span { font-size: 13px; color: var(--muted); }
+
+    /* Achievement / features */
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 16px; }
+    .feature-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      box-shadow: var(--shadow); border: 1px solid var(--line);
+    }
+    .icon-badge {
+      width: 48px; height: 48px; border-radius: 12px; background: var(--sage-light);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--secondary-dark);
+      font-size: 22px;
+    }
+    .feature-card h3 { margin-bottom: 10px; }
+    .intro-row { display: grid; grid-template-columns: 1fr; max-width: 768px; }
+
+    /* Services */
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .service-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      border: 1px solid var(--line); display: flex; flex-direction: column; box-shadow: var(--shadow);
+    }
+    .service-card .icon-badge { margin-bottom: 16px; }
+    .service-card h3 { margin-bottom: 10px; }
+    .service-card p { font-size: 15px; flex-grow: 1; }
+    .service-link { margin-top: 18px; font-weight: 600; color: var(--tertiary-dark); font-size: 15px; }
+
+    /* Doctors */
+    .doctors-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 896px; margin: 0 auto; }
+    .doctor-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px;
+      box-shadow: var(--shadow); text-align: center;
+    }
+    .doctor-photo { width: 192px; height: 192px; margin: 0 auto 24px; border-radius: 50%; overflow: hidden; }
+    .doctor-photo .placeholder-img { width: 100%; height: 100%; border-radius: 50%; }
+    .doctor-card h3 { margin-bottom: 12px; }
+    .tags { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+    .tag { background: var(--sage-light); color: var(--ink); font-size: 13px; padding: 5px 14px; border-radius: 999px; font-weight: 500; }
+    .doctor-card p { font-size: 15px; }
+    .expertise { text-align: left; margin-top: 4px; }
+    .expertise-intro { font-size: 15px; margin-bottom: 14px; }
+    .expertise-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .expertise ul { list-style: disc; padding-left: 22px; font-size: 15px; color: var(--muted); display: grid; gap: 4px; }
+
+    /* Reviews */
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .review-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      box-shadow: var(--shadow); border: 1px solid var(--line); display: flex; flex-direction: column;
+    }
+    .stars { color: var(--tertiary); letter-spacing: 3px; font-size: 16px; margin-bottom: 14px; }
+    .review-card blockquote { font-size: 15px; color: var(--ink); flex-grow: 1; margin-bottom: 20px; }
+    .reviewer strong { display: block; font-size: 15px; }
+    .reviewer span { font-size: 13px; color: var(--muted); }
+    .reviews-more { text-align: center; margin-top: 36px; }
+
+    /* FAQ */
+    .faq-wrap { max-width: 912px; margin: 0 auto; display: grid; gap: 14px; }
+    details {
+      background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+      padding: 20px 24px;
+    }
+    summary {
+      cursor: pointer; font-weight: 600; font-size: 17px; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 22px; color: var(--tertiary-dark); }
+    details[open] summary::after { content: "–"; }
+    details p { margin-top: 14px; font-size: 15px; }
+
+    /* Appointment */
+    .appt { background: var(--sage-light); position: relative; overflow: hidden; }
+    .appt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .appt-info h2 { margin-bottom: 16px; }
+    .appt-info > p { margin-bottom: 28px; }
+    .contact-line {
+      display: flex; gap: 16px; align-items: center; background: var(--white);
+      padding: 18px 20px; border-radius: 12px; margin-bottom: 14px; border: 1px solid var(--line);
+    }
+    .contact-line .icon-badge { margin: 0; width: 44px; height: 44px; flex-shrink: 0; }
+    .contact-line small { display: block; color: var(--muted); font-size: 13px; }
+    .contact-line strong { font-size: 16px; }
+
+    .form-card {
+      background: var(--white); border-radius: 20px; padding: 40px;
+      box-shadow: 0 20px 50px rgba(31,42,36,0.12);
+    }
+    .form-card h3 { font-size: 26px; margin-bottom: 8px; }
+    .form-card > p { font-size: 15px; margin-bottom: 26px; }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+    .field label .req { color: #c0392b; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px;
+      font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(23,73,74,0.15);
+    }
+    .field textarea { resize: vertical; min-height: 96px; }
+    .field .error { color: #c0392b; font-size: 13px; margin-top: 6px; display: none; }
+    .field.invalid .error { display: block; }
+    .field.invalid input, .field.invalid select { border-color: #c0392b; }
+    .submit-btn { width: 100%; border: none; font-size: 16px; padding: 16px; }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-message { margin-top: 18px; padding: 14px 16px; border-radius: 10px; font-size: 15px; display: none; }
+    .form-message.success { display: block; background: #e6f4ea; color: #1e6b34; }
+    .form-message.error { display: block; background: #fdecea; color: #a12c20; }
+    .privacy { font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .contact-grid h2 { margin-bottom: 24px; }
+    .info-row { display: flex; gap: 16px; margin-bottom: 26px; }
+    .info-row .icon-badge { margin: 0; flex-shrink: 0; }
+    .info-row h3 { font-size: 16px; margin-bottom: 4px; }
+    .info-row p { font-size: 15px; }
+    .map-card { border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); height: 352px; }
+    .map-card .placeholder-img { height: 100%; border-radius: 0; }
+
+    /* Footer */
+    footer { background: var(--ink); color: rgba(255,255,255,0.8); padding: 56px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 40px; }
+    footer h3 { color: var(--white); font-size: 18px; margin-bottom: 16px; }
+    footer .brand-name { color: var(--white); }
+    footer p, footer li { font-size: 14px; color: rgba(255,255,255,0.7); }
+    footer ul { list-style: none; display: grid; gap: 10px; }
+    footer ul a:hover { color: var(--tertiary); }
+    .socials { display: flex; gap: 10px; margin-top: 18px; }
+    .socials a {
+      width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center; color: var(--white);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.12); margin-top: 40px; padding-top: 24px;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px;
+    }
+
+    /* Gallery */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .gallery-tile { aspect-ratio: 1 / 1; border-radius: var(--radius); overflow: hidden; padding: 0; background: var(--white); box-shadow: var(--shadow); }
+    .gallery-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Floating WhatsApp */
+    .whatsapp-float {
+      position: fixed; right: 24px; bottom: 24px; width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: var(--white); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 25px rgba(37,211,102,0.4); font-weight: 700; z-index: 60; text-decoration: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      h1 { font-size: 40px; }
+      h2 { font-size: 30px; }
+      .features-grid, .services-grid, .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .hero-grid, .appt-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      nav ul { gap: 18px; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 56px 0; }
+      h1 { font-size: 32px; }
+      h2 { font-size: 26px; }
+      nav { display: none; }
+      .menu-toggle { display: block; }
+      nav.open {
+        display: block; position: absolute; top: 80px; left: 0; right: 0;
+        background: var(--white); border-bottom: 1px solid var(--line); padding: 16px 24px;
+      }
+      nav.open ul { flex-direction: column; gap: 14px; }
+      .header-cta .btn-outline { display: none; }
+      .features-grid, .services-grid, .doctors-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .hero-visual .placeholder-img { height: 300px; }
+      .trust-badge { position: static; margin-top: 16px; }
+      .form-card { padding: 28px 22px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .header-cta .btn-primary { padding: 10px 14px; font-size: 13px; }
+      .ctas .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-wrap">
+      <div class="brand">
+        <img class="logo-img" src="clinic-logo.png" alt="Cute Smiles logo">
+        <div>
+          <div class="brand-name">Cute Smiles</div>
+          <div class="brand-sub">Family Dental Clinic &amp; Implant Centre</div>
+        </div>
+      </div>
+      <nav id="mainNav">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#treatments">Our Treatments</a></li>
+          <li><a href="#doctors">Our Doctors</a></li>
+          <li><a href="#reviews">Patient Reviews</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-outline" href="tel:+918610767124">Call Now</a>
+        <a class="btn btn-primary" href="#appointment">Book an Appointment</a>
+        <button class="menu-toggle" aria-label="Open menu" onclick="document.getElementById('mainNav').classList.toggle('open')">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="eyebrow">Welcome to Cute Smiles</span>
+          <h1>Crafting Smiles with <span>Care!</span></h1>
+          <p>Gentle, modern dental care for the whole family, from routine check-ups to advanced implant and orthodontic treatments.</p>
+          <div class="ctas">
+            <a class="btn btn-primary" href="#appointment">Book an Appointment</a>
+            <a class="btn btn-outline" href="#treatments">Explore Treatments</a>
+          </div>
+          <div class="trust-list">
+            <div class="trust-item"><span class="dot"></span> Experienced specialist doctors</div>
+            <div class="trust-item"><span class="dot"></span> Modern, comfortable clinic</div>
+            <div class="trust-item"><span class="dot"></span> Transparent, affordable treatment plans</div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="dentist-consultation.png" alt="Dentist consulting a patient in a modern clinic" style="width:100%;height:420px;object-fit:cover;border-radius:var(--radius);">
+          <div class="trust-badge">
+            <div class="icon-badge" style="margin:0;">&#10003;</div>
+            <div>
+              <strong>Trusted by families</strong>
+              <span>Quality dental care with a patient-first approach</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Achievement / Trust -->
+    <section class="section" id="about" style="background:#fff;">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">About Us</span>
+          <h2>Excellence in Dentistry, Care in Every Smile.</h2>
+          <p>At Cute Smiles Family Dental Clinic and Implant Centre, we combine clinical expertise, modern dental techniques and a patient-first approach to deliver quality dental care. Our focus goes beyond treating dental problems – we strive to help every patient maintain long-term oral health and enjoy the confidence of a healthy smile.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="icon-badge">&#128150;</div>
+            <h3>Painless Dentistry</h3>
+            <p>Patient-focused care by means of painless treatment procedures to reduce patient anxiety and build confidence.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-badge">&#9733;</div>
+            <h3>Care for Every Age</h3>
+            <p>Dental solutions thoughtfully tailored for children, adults and seniors.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-badge">&#9889;</div>
+            <h3>Specialist Expertise</h3>
+            <p>Specialised care in orthodontics, prosthodontics and implant dentistry.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-badge">&#10024;</div>
+            <h3>Modern Dentistry</h3>
+            <p>Contemporary treatment approaches focused on precision and comfort.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon-badge">&#9829;</div>
+            <h3>Patient-Centred Care</h3>
+            <p>Individual attention, clear treatment explanations and personalised plans.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Services -->
+    <section class="section" id="treatments">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Our Dental Services</span>
+          <h2>Comprehensive Treatments for Every Smile</h2>
+          <p>From everyday check-ups to specialised procedures, we offer a complete range of dental services under one roof.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="icon-badge">&#129463;</div>
+            <h3>Dental Implants</h3>
+            <p>Restore missing teeth with modern implant solutions designed to improve chewing function, stability and smile aesthetics.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#9881;</div>
+            <h3>Orthodontic Braces</h3>
+            <p>Correct misaligned teeth and bite irregularities with personalised orthodontic treatment options.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#128142;</div>
+            <h3>Clear Aligners</h3>
+            <p>Straighten your teeth with discreet, removable aligner systems planned around your individual smile goals.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#128137;</div>
+            <h3>Root Canal Treatment</h3>
+            <p>Treat infected or inflamed dental pulp and preserve your natural tooth with appropriate endodontic care.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#128081;</div>
+            <h3>Crowns and Bridges</h3>
+            <p>Restore damaged or missing teeth with customised prosthetic solutions that improve function and appearance.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#9888;</div>
+            <h3>Wisdom Tooth Removal</h3>
+            <p>Evaluation and management of problematic wisdom teeth with appropriate surgical care.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#10024;</div>
+            <h3>Oral Prophylaxis</h3>
+            <p>Professional teeth cleaning to remove plaque, calculus and surface stains while supporting healthy gums.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+          <div class="service-card">
+            <div class="icon-badge">&#129001;</div>
+            <h3>General &amp; Preventive Dentistry</h3>
+            <p>Routine dental examinations, restorations and preventive care to maintain long-term oral health.</p>
+            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Doctors -->
+    <section class="section" id="doctors" style="background:#fff;">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Our Doctors</span>
+          <h2>Meet our Smile Masters</h2>
+          <p>Our experienced specialists bring focused expertise to every treatment we offer.</p>
+        </div>
+        <div class="doctors-grid">
+          <div class="doctor-card">
+            <div class="doctor-photo"><img src="dr-bhavana.webp" alt="Dr. Bhavana B" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;"></div>
+            <h3>Dr. Bhavana B, MDS</h3>
+            <div class="tags">
+              <span class="tag">Orthodontist</span>
+              <span class="tag">Aligner Specialist</span>
+            </div>
+            <div class="expertise">
+              <p class="expertise-intro">Specializing in correcting teeth alignment, jaw discrepancies, and facial growth problems to achieve a balanced bite and harmonious facial appearance.</p>
+              <p class="expertise-title">Areas of expertise:</p>
+              <ul>
+                <li>Orthodontic Treatment (Braces)</li>
+                <li>Dentofacial Correction</li>
+                <li>Invisible Aligners</li>
+                <li>Orthognathic Surgery</li>
+                <li>Jaw Growth Modification</li>
+              </ul>
+            </div>
+          </div>
+          <div class="doctor-card">
+            <div class="doctor-photo"><img src="dr-praveen.png" alt="Dr. Praveen R" style="width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;"></div>
+            <h3>Dr. Praveen R, MDS</h3>
+            <div class="tags">
+              <span class="tag">Maxillofacial Prosthodontist</span>
+              <span class="tag">Implantologist</span>
+            </div>
+            <div class="expertise">
+              <p class="expertise-intro">Specializing in replacing missing teeth, restoring damaged teeth, and full-mouth rehabilitation with a focus on function, aesthetics, and long-term smile restoration.</p>
+              <p class="expertise-title">Areas of expertise:</p>
+              <ul>
+                <li>Dental Implants</li>
+                <li>Full Mouth Rehabilitation (FMR)</li>
+                <li>Smile Designing</li>
+                <li>Crowns &amp; Bridges</li>
+                <li>Complete Dentures</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Patient Reviews -->
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Patient Reviews</span>
+          <h2>What Our Patients Say</h2>
+          <p>Real experiences from families and patients who trust us with their smiles.</p>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"We visited Dr. Bhavana for root canal for my wife. She is the best and friendly doctor around Chrompet. The procedure was painless and she was so patient throughout. And the most important thing - affordable charges. Thank you Doctor Bhavana, strongly recommended for anyone looking for a good dentist!"</blockquote>
+            <div class="reviewer"><strong>Ravivarma Sivagnanam</strong><span>Root Canal Patient</span></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"I went to place implant for my father few weeks ago…. there Dr Praveen is so calm and gentle in explaining about treatment plans and procedures and had a great implant placement for my father and he is so well now…. must try dental clinic …and highly recommended !!✨👍🏻"</blockquote>
+            <div class="reviewer"><strong>Keerthi Murugesan</strong><span>Dental Implant Patient</span></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <blockquote>"Great experience at the clinic. I would recommend this place as all treatments are done by the specialists. Go to place for crowns, implants and also braces alignment."</blockquote>
+            <div class="reviewer"><strong>Roshini</strong><span>Family Care Patient</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5b. Gallery (photos to be added later) -->
+    <section class="section" id="gallery" style="background:#fff;">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Gallery</span>
+        </div>
+        <!-- Add photos here later: put each image file in the same folder and list its name in GALLERY_PHOTOS below, e.g. ["clinic-1.jpg", "clinic-2.jpg"] -->
+        <div class="gallery-grid" id="galleryGrid">
+          <div class="gallery-tile"><img src="gallery-1-conventional-braces.png" alt="Conventional braces at Cute Smiles" loading="lazy"></div>
+          <div class="gallery-tile"><img src="gallery-2-wisdom-tooth-extraction.jpg" alt="Wisdom tooth extraction at Cute Smiles" loading="lazy"></div>
+          <div class="gallery-tile"><img src="gallery-3-root-canal-treatment.jpg" alt="Root canal treatment at Cute Smiles" loading="lazy"></div>
+          <div class="gallery-tile"><img src="gallery-4-crowns-and-bridges.jpg" alt="Crowns and bridges at Cute Smiles" loading="lazy"></div>
+          <div class="gallery-tile"><img src="gallery-5-clear-aligners.jpg" alt="Clear aligners at Cute Smiles" loading="lazy"></div>
+          <div class="gallery-tile"><img src="gallery-6-dental-implant.jpg" alt="Dental implant at Cute Smiles" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section class="section" id="faq" style="background:#fff;">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">FAQs</span>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-wrap">
+          <details>
+            <summary>1. What dental treatments are available at Cute Smiles Family Dental Clinic?</summary>
+            <p>We offer a comprehensive range of dental services, including general dentistry, dental implants, orthodontic braces, clear aligners, crowns and bridges, root canal treatment, wisdom tooth removal, teeth cleaning and preventive dental care. Our goal is to provide complete dental solutions for patients of all age groups.</p>
+          </details>
+          <details>
+            <summary>2. Do you provide dental implants?</summary>
+            <p>Yes. We offer dental implant solutions to replace missing teeth. Dental implants are designed to restore the appearance, function and stability of missing teeth. Our dentists evaluate each patient's oral health and bone condition before recommending a suitable treatment plan.</p>
+          </details>
+          <details>
+            <summary>3. Do you offer braces and clear aligner treatment?</summary>
+            <p>Yes. We provide orthodontic treatments using conventional braces, aesthetic braces and clear aligners. Treatment recommendations are based on your bite, tooth alignment, clinical requirements and smile goals.</p>
+          </details>
+          <details>
+            <summary>4. At what age should children have their first dental visit?</summary>
+            <p>Ideally, children should visit a dentist by their first birthday or within six months of the eruption of their first tooth. Early dental visits help identify potential concerns, establish good oral hygiene habits and support healthy dental development.</p>
+          </details>
+          <details>
+            <summary>5. Is root canal treatment painful?</summary>
+            <p>Root canal treatment is performed under local anaesthesia to minimise discomfort. It helps treat infected or inflamed dental pulp and preserve the natural tooth. Most patients can comfortably undergo the procedure with appropriate care.</p>
+          </details>
+          <details>
+            <summary>6. How often should I visit the dentist?</summary>
+            <p>For most individuals, a dental check-up every six months is a good starting point. However, the frequency may vary depending on your oral health, gum condition, dental history and individual risk factors.</p>
+          </details>
+          <details>
+            <summary>7. Do I need an appointment before visiting the clinic?</summary>
+            <p>We recommend scheduling an appointment in advance to minimise waiting time and ensure adequate attention during your visit. You can contact us through phone or WhatsApp to book your consultation.</p>
+          </details>
+          <details>
+            <summary>8. Where is Cute Smiles Family Dental Clinic located?</summary>
+            <p>Our clinic is located at Hasthinapuram, Chromepet, Chennai, conveniently accessible to patients from Hasthinapuram, Chromepet, Chitlapakkam, Sembakkam and surrounding neighbourhoods.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Appointment / Lead Form -->
+    <section class="section appt" id="appointment">
+      <div class="container appt-grid">
+        <div class="appt-info">
+          <span class="eyebrow">Appointment Scheduling</span>
+          <h2>Let's Take the First Step Towards a Healthier Smile!</h2>
+          <p>Have a dental concern or simply looking to improve your smile? We're here to help. Share your details with us, and our team will get in touch to understand your concerns and help you schedule an appointment at your convenience.</p>
+          <div class="contact-line">
+            <div class="icon-badge">&#128222;</div>
+            <div><small>Call us directly</small><strong>8610767124</strong></div>
+          </div>
+          <div class="contact-line">
+            <div class="icon-badge">&#128172;</div>
+            <div><small>Chat on WhatsApp</small><strong>8610767124</strong></div>
+          </div>
+          <div class="contact-line">
+            <div class="icon-badge">&#128337;</div>
+            <div><small>Clinic timings</small><strong>Mon – Sat: 9:30 AM – 1:30 PM<br>4:30 PM – 8:30 PM</strong></div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Request an Appointment</h3>
+          <p>Fill in your information and we will contact you shortly.</p>
+
+          <form id="appointmentForm" novalidate>
+            <div class="field" id="field-name">
+              <label for="name">Full Name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Enter your full name" autocomplete="name">
+              <div class="error">Please enter your full name.</div>
+            </div>
+
+            <div class="field" id="field-phone">
+              <label for="phone">Mobile Number <span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" inputmode="numeric" maxlength="10" autocomplete="tel">
+              <div class="error">Please enter a valid 10-digit mobile number.</div>
+            </div>
+
+            <div class="field" id="field-service">
+              <label for="service">Service Required <span class="req">*</span></label>
+              <select id="service" name="service">
+                <option value="">Select a dental service</option>
+                <option>Dental Implants</option>
+                <option>Orthodontic Braces</option>
+                <option>Clear Aligners</option>
+                <option>Root Canal Treatment</option>
+                <option>Crowns and Bridges</option>
+                <option>Wisdom Tooth Removal</option>
+                <option>Oral Prophylaxis</option>
+                <option>General &amp; Preventive Dentistry</option>
+              </select>
+              <div class="error">Please select a service.</div>
+            </div>
+
+            <div class="field">
+              <label for="concern">Briefly Describe Your Concern (Optional)</label>
+              <textarea id="concern" name="concern" placeholder="Tell us about any specific pain, goals or past treatments"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn" id="submitBtn">Request Appointment</button>
+            <div class="form-message" id="formMessage"></div>
+          </form>
+          <p class="privacy">Your details are used only to contact you about your appointment.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Contact & Location -->
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <span class="eyebrow">Contact Us</span>
+          <h2>Visit Us for Your Next Dental Appointment.</h2>
+          <div class="info-row">
+            <div class="icon-badge">&#128205;</div>
+            <div>
+              <h3>Address</h3>
+              <p>Cute Smiles Family Dental Clinic and Implant Centre, First Floor, No. 76, Dr. Rajendra Prasad Road, next to North Chapathis Hotel, Velmurugan Nagar, Hasthinapuram, Chromepet, Chennai, Tamil Nadu – 600044</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon-badge">&#128222;</div>
+            <div>
+              <h3>Phone &amp; WhatsApp</h3>
+              <p>8610767124</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon-badge">&#9993;</div>
+            <div>
+              <h3>Email</h3>
+              <p>cutesmilesdentalclinic@gmail.com</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon-badge">&#128337;</div>
+            <div>
+              <h3>Timings</h3>
+              <p>Monday – Saturday: 9:30 AM – 1:30 PM<br>4:30 PM – 8:30 PM<br>Sunday: By appointment</p>
+            </div>
+          </div>
+          <div class="ctas" style="margin-top:8px;">
+            <a class="btn btn-outline" href="https://maps.app.goo.gl/UrgHH1zFAW138S4E6" target="_blank" rel="noopener">Get Directions</a>
+            <a class="btn btn-primary" href="#appointment">Book an Appointment</a>
+          </div>
+        </div>
+        <div class="map-card">
+          <img src="clinic-map.png" alt="Map showing the location of Cute Smiles Family Dental Clinic, Chromepet, Chennai" style="width:100%;height:100%;object-fit:contain;background:#fff;display:block;">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand">
+            <img class="logo-img" src="clinic-logo.png" alt="Cute Smiles logo">
+            <div>
+              <div class="brand-name">Cute Smiles</div>
+              <div class="brand-sub" style="color:rgba(255,255,255,0.6);">Your Smile. Our Priority.</div>
+            </div>
+          </div>
+          <p style="margin-top:18px;">Creating healthy smiles through comprehensive dental care, personalised attention and advanced treatment solutions.</p>
+          <div class="socials"><a href="https://www.instagram.com/cutesmilesfamilydentalclinic?evlk=dDFidHRqbGZvanp1&amp;utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a></div>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#treatments">Our Treatments</a></li>
+            <li><a href="#doctors">Our Doctors</a></li>
+            <li><a href="#reviews">Patient Reviews</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="#treatments">Dental Implants</a></li>
+            <li><a href="#treatments">Orthodontic Braces</a></li>
+            <li><a href="#treatments">Clear Aligners</a></li>
+            <li><a href="#treatments">Root Canal Treatment</a></li>
+            <li><a href="#treatments">Crowns &amp; Bridges</a></li>
+            <li><a href="#treatments">Wisdom Tooth Removal</a></li>
+            <li><a href="#treatments">Oral Prophylaxis</a></li>
+            <li><a href="#treatments">General Dentistry</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact &amp; Timings</h3>
+          <ul>
+            <li>First Floor, No. 76, Dr. Rajendra Prasad Road, next to North Chapathis Hotel, Velmurugan Nagar, Hasthinapuram, Chromepet, Chennai, Tamil Nadu – 600044</li>
+            <li>8610767124</li>
+            <li>cutesmilesdentalclinic@gmail.com</li>
+            <li>Mon – Sat: 9:30 AM – 1:30 PM<br>4:30 PM – 8:30 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Cute Smiles Family Dental Clinic and Implant Centre. All rights reserved.</span>
+        <span>Privacy Policy &nbsp;|&nbsp; Terms of Use</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Gallery: list photo file names here once you upload them
+    const GALLERY_PHOTOS = [];
+    const galleryGrid = document.getElementById("galleryGrid");
+    if (GALLERY_PHOTOS.length) {
+      galleryGrid.innerHTML = "";
+      GALLERY_PHOTOS.forEach(function (file) {
+        const tile = document.createElement("div");
+        tile.className = "gallery-tile";
+        const img = document.createElement("img");
+        img.src = file;
+        img.alt = "Cute Smiles clinic photo";
+        img.loading = "lazy";
+        tile.appendChild(img);
+        galleryGrid.appendChild(tile);
+      });
+    }
+  </script>
+
+  <a class="whatsapp-float" href="https://wa.me/918610767124" aria-label="Chat on WhatsApp"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path fill="#FFFFFF" d="M16.04 3C8.84 3 3 8.8 3 15.95c0 2.3.63 4.54 1.82 6.5L3 29l6.75-1.77a13.1 13.1 0 0 0 6.29 1.6h.01C23.23 28.83 29 23.03 29 15.9 29 8.75 23.24 3 16.04 3zm0 23.8h-.01a10.9 10.9 0 0 1-5.55-1.52l-.4-.24-4 1.05 1.07-3.9-.26-.4a10.8 10.8 0 0 1-1.67-5.84c0-6.03 4.93-10.93 10.99-10.93 2.93 0 5.69 1.14 7.76 3.21a10.84 10.84 0 0 1 3.21 7.73c0 6.03-4.94 10.9-10.94 10.9z"/><path fill="#FFFFFF" d="M22.27 19.07c-.33-.17-1.96-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-.33-.17-1.39-.51-2.65-1.63-.98-.87-1.64-1.95-1.83-2.28-.19-.33-.02-.5.14-.67.15-.15.33-.38.5-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.17-.74-1.78-1.01-2.44-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.58.08-.88.41-.3.33-1.16 1.13-1.16 2.76s1.19 3.2 1.35 3.42c.17.22 2.34 3.57 5.67 5.01.79.34 1.41.55 1.89.7.8.25 1.52.22 2.09.13.64-.1 1.96-.8 2.24-1.57.27-.77.27-1.44.19-1.57-.08-.14-.3-.22-.63-.38z"/></svg></a>
+
+  <script>
+    // Google Apps Script Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwmiFXUOCO1WbGEgTkxcxr8GOkMkoa-Bsf46o_5HjwHdcs5b6y5Tgat9Y_qDt4W-VWn/exec";
+
+    const form = document.getElementById("appointmentForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const messageBox = document.getElementById("formMessage");
+
+    function setFieldInvalid(id, invalid) {
+      document.getElementById(id).classList.toggle("invalid", invalid);
+    }
+
+    function validate() {
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const service = form.service.value;
+
+      const nameOk = name.length > 0;
+      const phoneOk = /^[0-9]{10}$/.test(phone);
+      const serviceOk = service !== "";
+
+      setFieldInvalid("field-name", !nameOk);
+      setFieldInvalid("field-phone", !phoneOk);
+      setFieldInvalid("field-service", !serviceOk);
+
+      return nameOk && phoneOk && serviceOk;
+    }
+
+    function showSuccess() {
+      messageBox.className = "form-message success";
+      messageBox.textContent = "Thank you! Our team will contact you shortly to confirm your appointment.";
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Request Appointment";
+    }
+
+    function showError() {
+      messageBox.className = "form-message error";
+      messageBox.textContent = "Sorry, something went wrong. Please try again or call us directly.";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Request Appointment";
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      messageBox.className = "form-message";
+      messageBox.textContent = "";
+
+      if (!validate()) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      const params = new URLSearchParams({
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        service: form.service.value,
+        concern: form.concern.value.trim()
+      });
+
+      const url = SCRIPT_URL + "?" + params.toString();
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(() => showSuccess())
+        .catch(() => showError());
+    });
+  </script>
+</body>
+</html>
