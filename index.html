@@ -401,6 +401,50 @@
     .doc-panel .doc-head h3 { font-size: 24px; }
     .doc-panel .doc-body h4 { margin-top: 18px; }
     @keyframes docPanelIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+    /* Service learn-more buttons and procedure pop-ups */
+    button.service-learn { background: none; border: none; padding: 0; font: inherit; font-weight: 600; font-size: 15px; color: var(--tertiary-dark); cursor: pointer; text-align: left; }
+    button.service-learn:hover { text-decoration: underline; }
+    .proc-dialog {
+      position: relative; border: none; border-radius: 20px; padding: 0;
+      width: min(640px, calc(100% - 32px)); max-height: 88vh; overflow: auto;
+      background: var(--white); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+    }
+    .proc-dialog::backdrop { background: rgba(37,43,43,0.55); }
+    .proc-inner { padding: 40px 36px 34px; }
+    .proc-inner h3 { font-size: 28px; text-align: center; margin-bottom: 22px; color: var(--ink); padding-right: 24px; }
+    .proc-img, .proc-art {
+      display: block; width: min(280px, 100%); aspect-ratio: 1 / 1; margin: 0 auto 26px;
+      border-radius: 16px; object-fit: cover;
+    }
+    .proc-art { background: linear-gradient(160deg, var(--sage-light), #FFFFFF); border: 1px solid var(--line); display: grid; place-items: center; }
+    .proc-art svg { width: 78%; height: 78%; }
+    .proc-body p { font-size: 15px; line-height: 1.75; color: var(--muted); margin-bottom: 14px; }
+    @media (max-width: 480px) {
+      .proc-inner { padding: 36px 20px 28px; }
+      .proc-inner h3 { font-size: 24px; }
+    }
+
+    /* Service panels open as a full-width row beneath the clicked card */
+    .proc-panel {
+      grid-column: 1 / -1; position: relative; text-align: left;
+      background: var(--bg); border: 1px solid var(--line); border-radius: 16px;
+      animation: docPanelIn .25s ease;
+    }
+    .proc-panel[hidden] { display: none; }
+    .proc-panel .proc-inner {
+      display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start;
+      padding: 36px 40px 36px;
+    }
+    .proc-panel .proc-inner h3 { grid-column: 1 / -1; font-size: 26px; text-align: left; margin: 0 40px 0 0; padding: 0; }
+    .proc-panel .proc-img, .proc-panel .proc-art { width: 100%; max-width: 240px; margin: 0; }
+    .proc-panel .proc-body p { font-size: 15px; line-height: 1.75; }
+    .proc-panel .dialog-close { top: 14px; right: 14px; width: 36px; height: 36px; font-size: 24px; }
+    button.service-learn[aria-expanded="true"] { color: var(--primary); }
+    @media (max-width: 768px) {
+      .proc-panel .proc-inner { grid-template-columns: 1fr; gap: 20px; padding: 32px 22px 26px; }
+      .proc-panel .proc-img, .proc-panel .proc-art { max-width: 220px; }
+    }
   </style>
 </head>
 <body>
@@ -555,62 +599,163 @@
             <div class="icon-badge">&#129463;</div>
             <h3>Dental Implants</h3>
             <p>Restore missing teeth with modern implant solutions designed to improve chewing function, stability and smile aesthetics.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="dental-implants">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#9881;</div>
             <h3>Orthodontic Braces</h3>
             <p>Correct misaligned teeth and bite irregularities with personalised orthodontic treatment options.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="braces">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#128142;</div>
             <h3>Clear Aligners</h3>
             <p>Straighten your teeth with discreet, removable aligner systems planned around your individual smile goals.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="aligners">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#128137;</div>
             <h3>Root Canal Treatment</h3>
             <p>Treat infected or inflamed dental pulp and preserve your natural tooth with appropriate endodontic care.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="rct">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#128081;</div>
             <h3>Crowns and Bridges</h3>
             <p>Restore damaged or missing teeth with customised prosthetic solutions that improve function and appearance.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="crowns">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 3C5 3 3.5 5 3.5 7.5c0 2 .6 3.4 1.1 5.1.6 2 .9 4.4 1.4 6.4.4 1.5 1.1 2.5 2.2 2.5 1.2 0 1.4-1.6 2-3.3.4-1 .9-1.7 1.8-1.7s1.4.7 1.8 1.7c.6 1.7.8 3.3 2 3.3 1.1 0 1.8-1 2.2-2.5.5-2 .8-4.4 1.4-6.4.5-1.7 1.1-3.1 1.1-5.1C20.5 5 19 3 16.5 3c-1.5 0-2.5.7-4.5.7S9 3 7.5 3z"/></svg></div>
             <h3>Wisdom Tooth Removal</h3>
             <p>Evaluation and management of problematic wisdom teeth with appropriate surgical care.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="wisdom">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#10024;</div>
             <h3>Oral Prophylaxis</h3>
             <p>Professional teeth cleaning to remove plaque, calculus and surface stains while supporting healthy gums.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="prophylaxis">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#129001;</div>
             <h3>General &amp; Preventive Dentistry</h3>
             <p>Routine dental examinations, restorations and preventive care to maintain long-term oral health.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="general">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#128515;</div>
             <h3>Smile Designing</h3>
             <p>Enhance your smile with personalised smile designing that blends aesthetics, facial harmony, and confidence for a natural-looking result.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="smile">Learn more &rarr;</button>
           </div>
           <div class="service-card">
             <div class="icon-badge">&#129510;</div>
             <h3>Kids Dentistry</h3>
             <p>Gentle, specialised dental care focused on healthy teeth, cavity prevention, and positive dental experiences for growing smiles.</p>
-            <a class="service-link" href="#appointment">Learn more &rarr;</a>
+            <button class="service-link service-learn" type="button" aria-expanded="false" data-proc="kids">Learn more &rarr;</button>
           </div>
+          <div class="proc-panel" id="proc-dental-implants" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-dental-implants-title">Dental Implants</h3>
+      <img class="proc-img" src="gallery-6-dental-implant.jpg" alt="Dental Implants">
+      <div class="proc-body">
+        <p>Dental implants are a modern and reliable way to replace missing teeth. They are small, screw-shaped titanium posts that are placed into the jawbone to act as artificial tooth roots. Once the implant integrates with the surrounding bone, a customised crown is attached to restore the appearance and function of the missing tooth. Implants can replace a single tooth, multiple teeth or even support a complete set of replacement teeth.</p>
+        <p>Dental implants are suitable for individuals with missing teeth who have adequate bone support and healthy gums. They help restore chewing ability, improve appearance and prevent the shifting of neighbouring teeth. The procedure involves careful evaluation, implant placement and a healing period before the final crown is fitted. However, not everyone is an immediate candidate. Adequate bone support, good oral hygiene and overall health are important for successful treatment, and some patients may require additional procedures such as bone grafting.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-braces" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-braces-title">Orthodontic Braces</h3>
+      <img class="proc-img" src="gallery-1-conventional-braces.png" alt="Orthodontic Braces">
+      <div class="proc-body">
+        <p>Braces are dental appliances used to straighten teeth and correct problems with the way the upper and lower teeth fit together. They consist of small brackets attached to the teeth and connected by a specialised wire that applies gentle, controlled pressure to gradually move the teeth into their desired positions. Braces are available in different options, including conventional metal braces and tooth-coloured ceramic braces.</p>
+        <p>Braces are suitable for children, teenagers and adults with crooked, crowded, spaced or protruding teeth, as well as certain bite-related problems. Treatment helps improve the alignment of teeth, chewing function and overall smile appearance. The duration of treatment varies depending on the complexity of the case and usually requires regular adjustment appointments. Good oral hygiene is essential throughout treatment, as braces can make cleaning more challenging. Following treatment, retainers are necessary to maintain the corrected tooth positions.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-aligners" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-aligners-title">Clear Aligners</h3>
+      <img class="proc-img" src="gallery-5-clear-aligners.jpg" alt="Clear Aligners">
+      <div class="proc-body">
+        <p>Clear aligners are transparent, removable trays designed to gradually straighten teeth without the need for traditional braces. A series of customised aligners is created using digital scans or impressions of your teeth. Each set is worn for a specified period before progressing to the next, gently guiding the teeth towards their planned positions. Since they are nearly invisible, they offer a discreet alternative to conventional braces.</p>
+        <p>Clear aligners are suitable for individuals with mild to moderate crowding, spacing and selected bite-related problems. They can be removed while eating, brushing and flossing, making oral hygiene easier. However, successful treatment depends heavily on wearing them for the recommended 20–22 hours a day. Not all orthodontic problems can be treated with aligners alone, and complex cases may require conventional braces or a combination of treatment approaches. A specialist orthodontic assessment helps determine whether aligners are suitable for you.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-rct" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-rct-title">Root Canal Treatment (RCT)</h3>
+      <img class="proc-img" src="gallery-3-root-canal-treatment.jpg" alt="Root Canal Treatment (RCT)">
+      <div class="proc-body">
+        <p>Root canal treatment is a procedure performed to save a tooth when the soft tissue inside it, known as the dental pulp, becomes infected or severely damaged. This can happen due to deep tooth decay, cracks, fractures or injury. During the procedure, the infected or damaged pulp is carefully removed, the inner canals of the tooth are cleaned and disinfected, and they are sealed with a specialised filling material. A dental filling or crown is then placed to restore the tooth's strength and function.</p>
+        <p>RCT is recommended for individuals experiencing persistent toothache, sensitivity to hot or cold, swelling or infection involving the tooth pulp. It helps relieve pain, eliminate infection and preserve the natural tooth instead of removing it. Modern techniques and local anaesthesia make the procedure comfortable for most patients. However, a root canal-treated tooth may become more prone to fracture and may require a protective crown.</p>
+        <p>In some cases, if the tooth is severely damaged or cannot be restored, extraction may be necessary.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-crowns" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-crowns-title">Crowns and Bridges</h3>
+      <img class="proc-img" src="gallery-4-crowns-and-bridges.jpg" alt="Crowns and Bridges">
+      <div class="proc-body">
+        <p>Crowns and bridges are fixed dental restorations used to repair damaged teeth and replace missing teeth. A dental crown is a customised cap placed over a weakened, broken or heavily restored tooth to protect it and restore its shape, strength and appearance. A dental bridge is used to replace one or more missing teeth by attaching artificial teeth to the neighbouring supporting teeth or dental implants.</p>
+        <p>These restorations are suitable for individuals with severely damaged, weakened or missing teeth who wish to restore their ability to chew and smile confidently. The procedure generally involves preparing the supporting tooth or teeth, taking digital scans or impressions and placing a customised restoration. Crowns and bridges are fixed in place and cannot be removed by the patient. However, bridges may require modification of the supporting teeth, and both restorations require proper cleaning and regular dental reviews to maintain their longevity.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-wisdom" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-wisdom-title">Wisdom Tooth Extraction</h3>
+      <img class="proc-img" src="gallery-2-wisdom-tooth-extraction.jpg" alt="Wisdom Tooth Extraction">
+      <div class="proc-body">
+        <p>Wisdom teeth are the last set of molars to develop, usually appearing between the ages of 17 and 25. Sometimes, there is insufficient space in the jaw for these teeth to erupt properly, causing them to become impacted, partially erupted or trapped beneath the gums. This can lead to pain, swelling, repeated infections, food accumulation or damage to neighbouring teeth. Wisdom tooth extraction involves carefully removing the problematic tooth under local anaesthesia. Depending on its position, the procedure may be a simple extraction or a minor surgical procedure.</p>
+        <p>Extraction is recommended when a wisdom tooth causes recurring pain, infection, decay, damage to adjacent teeth or other complications. Not all wisdom teeth need to be removed; healthy, properly positioned teeth that can be maintained clean may simply require monitoring. Some extractions may involve temporary swelling, discomfort and difficulty opening the mouth during recovery. The complexity of the procedure depends on the tooth's position, root development and proximity to important anatomical structures.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-prophylaxis" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-prophylaxis-title">Oral Prophylaxis</h3>
+      <img class="proc-img" src="oral prophylaxis.jpg" alt="Oral Prophylaxis">
+      <div class="proc-body">
+        <p>Oral prophylaxis, commonly known as professional teeth cleaning or scaling, is a preventive dental procedure that removes plaque, tartar and surface stains accumulated on the teeth. Even with regular brushing and flossing, deposits can build up in areas that are difficult to clean at home. During the procedure, specialised dental instruments are used to remove these deposits, followed by polishing to leave the teeth clean and smooth.</p>
+        <p>Professional teeth cleaning is recommended for individuals who have plaque or tartar accumulation, gum inflammation, bad breath or surface stains. It helps maintain healthy gums, prevent gum disease and reduce the risk of dental problems. The procedure is generally safe and suitable for most individuals, although those with sensitive teeth or inflamed gums may experience temporary discomfort or mild bleeding. Regular cleaning does not replace daily brushing and flossing, but complements them in maintaining good oral health.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-general" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-general-title">General and Preventive Dentistry</h3>
+      <img class="proc-img" src="general and preventive dentistry.jpg" alt="General and Preventive Dentistry">
+      <div class="proc-body">
+        <p>General and preventive dentistry focuses on maintaining healthy teeth and gums while preventing dental problems before they become serious. It includes routine dental examinations, professional cleaning, fillings, fluoride treatments, preventive advice and early detection of conditions affecting the teeth and gums. Regular check-ups allow the dentist to identify cavities, gum disease, worn teeth and other concerns before they progress.</p>
+        <p>These services are suitable for individuals of all age groups, whether they have existing dental concerns or simply wish to maintain good oral health. Preventive care helps reduce the likelihood of extensive dental treatments, preserve natural teeth and maintain overall oral hygiene. The frequency of dental visits depends on individual oral health needs and risk factors. While regular check-ups and professional care play an important role, they must be supported by proper brushing, flossing and healthy dietary habits at home.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-smile" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-smile-title">Smile Designing</h3>
+      <img class="proc-img" src="smile designing.jpg" alt="Smile Designing">
+      <div class="proc-body">
+        <p>Smile designing is a customised approach to improving the appearance of your smile by enhancing the shape, size, colour and alignment of your teeth. It involves carefully evaluating your facial features, lip line, gum contours and existing teeth to plan a smile that complements your overall appearance. Depending on individual needs, treatment may involve teeth whitening, veneers, crowns, orthodontic treatment, gum reshaping or a combination of procedures.</p>
+        <p>Smile designing is suitable for individuals who wish to improve concerns such as discoloured, uneven, chipped, worn, spaced or irregularly shaped teeth. The treatment plan is personalised, with the aim of achieving a natural-looking and balanced smile while maintaining dental health. The procedures involved, treatment duration and results vary depending on the individual's needs. It is important to remember that cosmetic improvements cannot always correct underlying dental problems, and maintaining the results requires good oral hygiene and regular dental visits.</p>
+      </div>
+    </div></div>
+          <div class="proc-panel" id="proc-kids" hidden>
+    <button class="dialog-close" type="button" aria-label="Close">&times;</button>
+    <div class="proc-inner">
+      <h3 id="proc-kids-title">Kids Dentistry</h3>
+      <img class="proc-img" src="kids dentistry.jpg" alt="Kids Dentistry">
+      <div class="proc-body">
+        <p>Kids dentistry focuses on maintaining the oral health of infants, children and teenagers as their teeth and jaws develop. It includes preventive care, routine dental check-ups, fluoride applications, dental sealants, fillings and treatment of tooth decay. Special care is taken to make dental visits comfortable and child-friendly, helping children develop positive dental habits from an early age.</p>
+        <p>Children should have their first dental visit by their first birthday or within six months of the eruption of their first tooth. Regular dental visits help identify cavities, monitor tooth development and detect problems with spacing or jaw growth at an early stage. Early intervention can prevent more complicated dental problems in the future. Since children's teeth and dental needs differ from those of adults, treatment is tailored to their age, development and individual requirements. Building good oral hygiene habits at home remains essential for long-term dental health.</p>
+      </div>
+    </div></div>
         </div>
       </div>
     </section>
@@ -911,6 +1056,16 @@
     </section>
   </main>
 
+
+
+
+
+
+
+
+
+
+
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -1004,6 +1159,41 @@
         panel.setAttribute("hidden", "");
         btn.setAttribute("aria-expanded", "false");
       });
+    });
+  </script>
+
+  <script>
+    // Service procedure panels: open as a full-width row beneath the clicked card's row
+    const servicesGrid = document.querySelector(".services-grid");
+    function closeProcPanels() {
+      document.querySelectorAll(".proc-panel").forEach(function (p) { p.setAttribute("hidden", ""); });
+      document.querySelectorAll("[data-proc]").forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
+    }
+    function placeProcPanel(btn) {
+      const panel = document.getElementById("proc-" + btn.dataset.proc);
+      const card = btn.closest(".service-card");
+      const cards = Array.from(servicesGrid.querySelectorAll(":scope > .service-card"));
+      const lastInRow = cards.filter(function (c) { return c.offsetTop === card.offsetTop; }).pop();
+      lastInRow.after(panel);
+      return panel;
+    }
+    document.querySelectorAll("[data-proc]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const wasOpen = btn.getAttribute("aria-expanded") === "true";
+        closeProcPanels();
+        if (wasOpen) return;
+        const panel = placeProcPanel(btn);
+        panel.removeAttribute("hidden");
+        btn.setAttribute("aria-expanded", "true");
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    });
+    document.querySelectorAll(".proc-panel .dialog-close").forEach(function (x) {
+      x.addEventListener("click", closeProcPanels);
+    });
+    window.addEventListener("resize", function () {
+      const open = document.querySelector(".proc-panel:not([hidden])");
+      if (open) placeProcPanel(document.querySelector('[data-proc="' + open.id.replace("proc-", "") + '"]'));
     });
   </script>
 
